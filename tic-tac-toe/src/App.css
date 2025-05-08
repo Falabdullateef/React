@@ -1,0 +1,71 @@
+body {
+  background-color: #262b33;
+  color: #fff;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid #000;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.square:hover {
+  background-color: #f0f0f0;
+}
+
+.board-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.board-row:last-child {
+  margin-bottom: 20px;
+}
+.winner-alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.next-turn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100px;
+  width: 100%;
+  margin: 0 auto;
+}
+.restartbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.background-blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+.modal.show {
+  filter: none;
+  pointer-events: auto;
+}
