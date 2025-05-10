@@ -15,7 +15,7 @@ This is my **first React project**, inspired by the [React documentation](https:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/tic-tac-toe.git
+   git clone https://github.com/Falabdullateef/tic-tac-toe.git
    cd tic-tac-toe
    ```
 
