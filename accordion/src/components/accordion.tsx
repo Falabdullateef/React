@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "./../App.css";
 import data from "./data";
 const Accordion = () => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -21,11 +22,18 @@ const Accordion = () => {
           data.map((dataItem) => (
             <div className="item">
               <div className="title">
-                <h3>{dataItem.question}</h3>
+                <h3
+                  onClick={() => {
+                    handlePlusClick(dataItem.id);
+                  }}
+                >
+                  {dataItem.question}
+                </h3>
                 <span
                   onClick={() => {
                     handlePlusClick(dataItem.id);
                   }}
+                  className="plus"
                 >
                   +
                 </span>
