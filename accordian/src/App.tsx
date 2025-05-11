@@ -1,8 +1,8 @@
 import React from "react";
-import Accordion from "./components/accordion";
+import Accordian from "./components/accordian";
 
 const App = () => {
-  return <Accordion></Accordion>;
+  return <Accordian></Accordian>;
 };
 
 export default App;
