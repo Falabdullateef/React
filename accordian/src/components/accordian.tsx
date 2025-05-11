@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./../App.css";
 import data from "./data";
-const Accordion = () => {
+const Accordian = () => {
   const [selected, setSelected] = useState<string | null>(null);
 
   function handlePlusClick(id: string) {
@@ -33,7 +33,6 @@ const Accordion = () => {
                   onClick={() => {
                     handlePlusClick(dataItem.id);
                   }}
-                  className="plus"
                 >
                   +
                 </span>
@@ -51,4 +50,4 @@ const Accordion = () => {
   );
 };
 
-export default Accordion;
+export default Accordian;
