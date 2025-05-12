@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./../App.css";
+import "../App.css";
 import data from "./data";
 const Accordian = () => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -17,29 +17,22 @@ const Accordian = () => {
 
   return (
     <div className="wrapper">
-      <div className="accordion">
+      <div className="accordian">
         {data && data.length > 0 ? (
           data.map((dataItem) => (
             <div className="item">
-              <div className="title">
-                <h3
-                  onClick={() => {
-                    handlePlusClick(dataItem.id);
-                  }}
-                >
-                  {dataItem.question}
-                </h3>
-                <span
-                  onClick={() => {
-                    handlePlusClick(dataItem.id);
-                  }}
-                >
-                  +
-                </span>
-                {selected === dataItem.id ? (
-                  <div className="answer">{dataItem.answer}</div>
-                ) : null}
+              <div
+                onClick={() => {
+                  handlePlusClick(dataItem.id);
+                }}
+                className="title"
+              >
+                <h3>{dataItem.question}</h3>
+                <span>+</span>
               </div>
+              {selected === dataItem.id ? (
+                <div className="answer">{dataItem.answer}</div>
+              ) : null}
             </div>
           ))
         ) : (
