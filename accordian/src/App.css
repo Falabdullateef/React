@@ -26,5 +26,11 @@ body {
 }
 .answer {
   color: black;
-  height: auto;
+  /* smooth popup animation functionallity */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out; /* Slightly increased duration, ease-out for a quick start */
+}
+.item.active .answer {
+  max-height: 200px; /* Ensure this is taller than your answer content */
 }

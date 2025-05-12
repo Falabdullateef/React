@@ -20,7 +20,10 @@ const Accordian = () => {
       <div className="accordian">
         {data && data.length > 0 ? (
           data.map((dataItem) => (
-            <div className="item">
+            <div
+              className={selected === dataItem.id ? "item active" : "item"}
+              key={dataItem.id}
+            >
               <div
                 onClick={() => {
                   handlePlusClick(dataItem.id);
@@ -30,9 +33,7 @@ const Accordian = () => {
                 <h3>{dataItem.question}</h3>
                 <span>+</span>
               </div>
-              {selected === dataItem.id ? (
-                <div className="answer">{dataItem.answer}</div>
-              ) : null}
+              <div className="answer">{dataItem.answer}</div>
             </div>
           ))
         ) : (
