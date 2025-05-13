@@ -3,6 +3,7 @@ import "../App.css";
 import data from "./data";
 const Accordian = () => {
   const [selected, setSelected] = useState<string | null>(null);
+  const [multiselection, setmultiselection] = useState(false);
 
   function handlePlusClick(id: string) {
     console.log("You have clicked question: " + id);
@@ -39,6 +40,12 @@ const Accordian = () => {
         ) : (
           <div> No data found</div>
         )}
+      </div>
+      {/* todo: add a toggle button from uiverse */}
+      <div className="togglemulti">
+        <button onClick={() => setmultiselection(true)}>
+          Multiple Selection Accordion
+        </button>
       </div>
     </div>
   );
