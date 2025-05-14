@@ -29,7 +29,4 @@ The app keeps track of what type of color you want (HEX or RGB) and what the cur
 
 Here are some cool things that could be added later:
 
-- **Copy Color Code:** A button to easily copy the HEX or RGB code.
 - **Toggle Button for Mode:** Instead of two buttons for HEX/RGB, one button that switches between them.
-- **Current Mode Display:** Text that clearly shows if you're in "HEX mode" or "RGB mode".
-- **Cool Background Animation:** Make the background color change with an animation, like a circle starting in the middle and growing to fill the screen.
