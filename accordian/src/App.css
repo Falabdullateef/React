@@ -29,8 +29,6 @@ body {
   color: black;
   /* smooth popup animation functionallity */
   max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease-out;
 }
 .item.active .answer {
   max-height: 200px;
