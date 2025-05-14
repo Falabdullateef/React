@@ -1,19 +1,16 @@
-import { useState } from "react";
-import "../App.css";
-import data from "./data";
-const Accordian = () => {
-  const [selected, setSelected] = useState<string | null>(null);
-  const [multiselection, setmultiselection] = useState(false);
+import React, { useState } from "react";
+import data from "./data"; // Assuming data.ts is in the same folder
+import "./../App.css"; // Make sure path is correct if App.css is in src
 
-  function handlePlusClick(id: string) {
-    console.log("You have clicked question: " + id);
-    if (selected == id) {
-      setSelected(null);
-      console.log("Set Selected is: " + selected);
-      return;
-    }
-    setSelected(id);
-    console.log("Set Selected is: " + selected);
+interface AccordianProps {
+  onToggleMode: () => void;
+}
+
+const Accordian: React.FC<AccordianProps> = ({ onToggleMode }) => {
+  const [selected, setSelected] = useState<string | null>(null);
+
+  function handleSingleSelection(id: string) {
+    setSelected(selected === id ? null : id);
   }
 
   return (
@@ -22,30 +19,27 @@ const Accordian = () => {
         {data && data.length > 0 ? (
           data.map((dataItem) => (
             <div
-              className={selected === dataItem.id ? "item active" : "item"}
+              className={`item ${selected === dataItem.id ? "active" : ""}`}
               key={dataItem.id}
             >
               <div
-                onClick={() => {
-                  handlePlusClick(dataItem.id);
-                }}
+                onClick={() => handleSingleSelection(dataItem.id)}
                 className="title"
               >
                 <h3>{dataItem.question}</h3>
-                <span>+</span>
+                <span>{selected === dataItem.id ? "-" : "+"}</span>
               </div>
-              <div className="answer">{dataItem.answer}</div>
+              {selected === dataItem.id && (
+                <div className="answer">{dataItem.answer}</div>
+              )}
             </div>
           ))
         ) : (
-          <div> No data found</div>
+          <div>No data found</div>
         )}
       </div>
-      {/* todo: add a toggle button from uiverse */}
       <div className="togglemulti">
-        <button onClick={() => setmultiselection(true)}>
-          Multiple Selection Accordion
-        </button>
+        <button onClick={onToggleMode}>Enable Multi Selection</button>
       </div>
     </div>
   );
