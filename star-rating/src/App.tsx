@@ -1,7 +1,7 @@
-import React from "react";
+import StarRating from "./components/star-rating";
 
 const App = () => {
-  return <div>App</div>;
+  return <StarRating nOfStars={5}></StarRating>;
 };
 
 export default App;
