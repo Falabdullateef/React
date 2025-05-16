@@ -7,3 +7,13 @@
 .star-rating svg {
   font-size: 2.5em;
 }
+.active {
+  color: yellow;
+}
+.inactive {
+  color: black;
+}
+
+body {
+  background-color: lightblue;
+}
