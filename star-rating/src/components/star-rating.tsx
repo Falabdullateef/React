@@ -7,15 +7,15 @@ interface StarRatingProps {
 
 const StarRating = ({ nOfStars = 5 }: StarRatingProps) => {
   const handleStarClick = (getCurrentIndex: number) => {
-    console.log(getCurrentIndex);
+    setRating(getCurrentIndex);
   };
 
   const handleStarHover = (getCurrentIndex: number) => {
-    console.log(getCurrentIndex);
+    setHover(getCurrentIndex);
   };
 
-  const handleStarLeave = (getCurrentIndex: number) => {
-    console.log("You have left star: " + getCurrentIndex.toString());
+  const handleStarLeave = () => {
+    setHover(rating);
   };
 
   const [rating, setRating] = useState(0);
@@ -25,9 +25,11 @@ const StarRating = ({ nOfStars = 5 }: StarRatingProps) => {
     <div className="star-rating">
       {[...Array(nOfStars)].map((_, index) => (
         <FaStar
+          key={index + 1}
+          className={index + 1 <= (hover || rating) ? "active" : "inactive"}
           onClick={() => handleStarClick(index + 1)}
           onMouseMove={() => handleStarHover(index + 1)}
-          onMouseLeave={() => handleStarLeave(index + 1)}
+          onMouseLeave={() => handleStarLeave()}
         />
       ))}
     </div>
