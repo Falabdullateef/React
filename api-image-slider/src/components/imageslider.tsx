@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsArrowUpCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-
+import "../App.css";
 interface Props {
   url: string;
   limit: string;
