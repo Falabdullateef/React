@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsArrowUpCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import "../App.css";
 interface Props {
   url: string;
@@ -43,24 +43,50 @@ const imageslider = ({ url, limit }: Props) => {
     return <div>Ran into an error. Error message: {errorMessage}</div>;
   }
 
+  function handleNext() {
+    setCurrentSlide(currentslide === 0 ? images.length - 1 : currentslide - 1);
+  }
+
+  function handlePrevious() {
+    setCurrentSlide(currentslide === 0 ? images.length - 1 : currentslide + 1);
+  }
+
   return (
     <div className="container">
-      <BsArrowRightCircleFill className="arrow arrow-left" />
+      <BsArrowLeftCircleFill
+        onClick={handlePrevious}
+        className="arrow arrow-left"
+      />
       {images && images.length
-        ? images.map((imageItem) => (
+        ? images.map((imageItem, index) => (
             <img
               key={imageItem.id}
               alt={imageItem.download_url}
               src={imageItem.download_url}
-              className="current-image"
+              className={
+                currentslide === index
+                  ? "current-image"
+                  : "current-image hide-current-image"
+              }
             ></img>
           ))
         : null}
-      <BsArrowRightCircleFill className="arrow arrow-right"></BsArrowRightCircleFill>
+      <BsArrowRightCircleFill
+        onClick={handleNext}
+        className="arrow arrow-right"
+      ></BsArrowRightCircleFill>
       <span className="circle-indicators">
         {images && images.length
           ? images.map((_, index) => (
-              <button key={index} className="current-indicator"></button>
+              <button
+                key={index}
+                className={
+                  currentslide === index
+                    ? "current-indictor"
+                    : "current-indictor inactive-indictor"
+                }
+                onClick={() => setCurrentSlide(index)}
+              ></button>
             ))
           : null}
       </span>
