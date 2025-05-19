@@ -43,12 +43,12 @@ const imageslider = ({ url, limit }: Props) => {
     return <div>Ran into an error. Error message: {errorMessage}</div>;
   }
 
-  function handleNext() {
+  function handlePrevious() {
     setCurrentSlide(currentslide === 0 ? images.length - 1 : currentslide - 1);
   }
 
-  function handlePrevious() {
-    setCurrentSlide(currentslide === 0 ? images.length - 1 : currentslide + 1);
+  function handleNext() {
+    setCurrentSlide(currentslide === images.length - 1 ? 0 : currentslide + 1);
   }
 
   return (
@@ -82,8 +82,8 @@ const imageslider = ({ url, limit }: Props) => {
                 key={index}
                 className={
                   currentslide === index
-                    ? "current-indictor"
-                    : "current-indictor inactive-indictor"
+                    ? "current-indicator"
+                    : "current-indicator inactive-indicator"
                 }
                 onClick={() => setCurrentSlide(index)}
               ></button>
