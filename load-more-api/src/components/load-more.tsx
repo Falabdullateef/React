@@ -7,14 +7,19 @@ const LoadMore = () => {
 
   async function fetchProducts() {
     try {
+      setloading(true);
       const reponse = await fetch(
         `https://dummyjson.com/products?limit=20&skip=${
           count === 0 ? 0 : count * 20
         }`
       );
       const result = await reponse.json();
-      console.log(result);
+
+      if (result && result.products && result.products.length) {
+        setloading(false);
+      }
     } catch (error) {
+      setloading(false);
       console.error(error);
     }
   }
@@ -22,6 +27,9 @@ const LoadMore = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+  if (loading) {
+    return <div>Loading Data, Please Wait.</div>;
+  }
   return <div>LoadMore</div>;
 };
 
