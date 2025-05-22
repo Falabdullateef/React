@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
+
 // Define the product type
 interface Product {
   id: number;
@@ -11,6 +12,8 @@ const LoadMore = () => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [count, setCount] = useState(0);
+  const [disabledbutton, setdisabledbutton] = useState(false);
+  const [totalProducts, setTotalProducts] = useState(0);
 
   async function fetchProducts() {
     try {
@@ -25,21 +28,35 @@ const LoadMore = () => {
       if (result && result.products && result.products.length) {
         // Update the products state with the fetched data
         setProducts((prevProducts) => [...prevProducts, ...result.products]);
-        setLoading(false);
+        setTotalProducts(result.total || 0);
+
+        // Check if we've loaded all available products
+        if (products.length + result.products.length >= result.total) {
+          setdisabledbutton(true);
+        }
+      } else {
+        // No more products to load
+        setdisabledbutton(true);
       }
     } catch (error) {
-      setLoading(false);
       console.error(error);
+    } finally {
+      // Always set loading to false when done, whether successful or not
+      setLoading(false);
     }
   }
 
   useEffect(() => {
     fetchProducts();
   }, [count]);
-
-  if (loading) {
-    return <div>Loading Data, Please Wait.</div>;
-  }
+  useEffect(() => {
+    if (products.length > 0 && totalProducts > 0) {
+      // If we've loaded all products or reached 100 (whichever comes first)
+      if (products.length >= totalProducts || products.length >= 100) {
+        setdisabledbutton(true);
+      }
+    }
+  }, [products, totalProducts]);
 
   return (
     <div className="container">
@@ -51,14 +68,19 @@ const LoadMore = () => {
               <p>{item.title}</p>
             </div>
           ))}
-        <div>
-          <div className="button-container">
-            <button onClick={() => setCount(count + 1)}>
-              Load More Products
-            </button>
-          </div>
+        <div className="button-container">
+          <button
+            disabled={disabledbutton || loading}
+            onClick={() => setCount(count + 1)}
+          >
+            {loading ? "Loading..." : "Load More Products"}
+          </button>
+          {disabledbutton && <p>You have reached the limit</p>}
         </div>
       </div>
+      {loading && (
+        <div className="loading-indicator">Loading Data, Please Wait.</div>
+      )}
     </div>
   );
 };
