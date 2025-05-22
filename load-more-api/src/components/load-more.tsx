@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import "./index.css";
 // Define the product type
 interface Product {
   id: number;
@@ -43,12 +43,20 @@ const LoadMore = () => {
 
   return (
     <div className="container">
-      {products.length > 0 &&
-        products.map((item) => (
-          <div key={item.id}>
-            <img src={item.thumbnail} alt={item.title} />
+      <div className="product-container">
+        {products.length > 0 &&
+          products.map((item) => (
+            <div className="product" key={item.id}>
+              <img src={item.thumbnail} alt={item.title} />
+              <p>{item.title}</p>
+            </div>
+          ))}
+        <div>
+          <div className="button-container">
+            <button>Load More Products</button>
           </div>
-        ))}
+        </div>
+      </div>
     </div>
   );
 };
