@@ -53,7 +53,9 @@ const LoadMore = () => {
           ))}
         <div>
           <div className="button-container">
-            <button>Load More Products</button>
+            <button onClick={() => setCount(count + 1)}>
+              Load More Products
+            </button>
           </div>
         </div>
       </div>
